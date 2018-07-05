@@ -2,7 +2,7 @@ import ITerminal from "../Terminal/ITerminal";
 import ICommand from "./ICommand";
 import ICommandCollection from "./ICommandCollection";
 
-export default class Help implements ICommand {
+export default class HelpCommand implements ICommand {
     private commands: ICommandCollection;
 
     constructor(commands: ICommandCollection) {

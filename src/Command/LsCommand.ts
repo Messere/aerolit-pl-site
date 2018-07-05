@@ -4,7 +4,7 @@ import IFileSystem from "../FileSystem/IFileSystem";
 import IFileNode from "../File/IFileNode";
 import IFileNodeCollection from "../File/IFileNodeCollection";
 
-export default class Ls implements ICommand {
+export default class LsCommand implements ICommand {
 
     private fileSystem : IFileSystem;
 
