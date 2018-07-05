@@ -1,0 +1,31 @@
+import SimpleTerminal from "./Terminal/SimpleTerminal";
+import PromptWithCwd from "./Prompt/PromptWithCwd";
+import InMemoryFileSystem from "./FileSystem/InMemoryFileSystem";
+import files from "./files";
+import BuiltInCommands from "./Command/BuiltInCommands";
+import CommandLineParser from "./Command/CommandLineParser";
+import Terminal from "./Terminal/Terminal";
+
+const fileSystem = new InMemoryFileSystem(files);
+
+const prompt = new PromptWithCwd(
+    fileSystem,
+    'aerolit.pl [',
+    ']$ '
+);
+
+const commands = new BuiltInCommands(fileSystem);
+const commandLineParser = new CommandLineParser(
+    commands, 
+    fileSystem
+);
+
+// show terminal on screen
+const terminal = new SimpleTerminal(
+    prompt,
+    commandLineParser,
+    new Terminal()
+);
+
+terminal.renderTo(document.getElementById('main'));
+terminal.start();

@@ -1,0 +1,13 @@
+{
+    "name": "aerolit.pl",
+    "description": "aerolit.pl homepage",
+    "version": "0.1.0",
+    "author": "Dariusz Sieradzki",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.16.3",
+        "systemjs": "^0.21.4"
+    },
+    "devDependencies": {},
+    "scripts": {}
+}

@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "system",
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "./public/main.js",
+        "rootDir": "./src/",
+        "sourceMap": true,
+        "inlineSources": true
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
