@@ -5,9 +5,14 @@
     "author": "Dariusz Sieradzki",
     "license": "MIT",
     "dependencies": {
-        "express": "^4.16.3",
         "systemjs": "^0.21.4"
     },
-    "devDependencies": {},
-    "scripts": {}
+    "devDependencies": {
+        "express": "^4.16.3",
+        "typescript": "^2.9.2",
+        "tsc-watch": "^1.0.22"
+    },
+    "scripts": {
+        "start": "tsc-watch --onSuccess \"node server.js\""
+    }
 }
