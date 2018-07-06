@@ -41,6 +41,21 @@ export default class SimpleTerminal implements ITerminal {
         node.appendChild(this.terminal.html);
     }
 
+    private handleException(e: Error) {
+        this.printLn('');
+        this.printLn(e.message, 'error');
+        console.debug(e);
+        
+        // stop processing input if too many errors
+        // to avoid infinite loop
+        this.errorCount++;        
+        if (this.errorCount < this.maxErrorCount) {
+            this.handleCommandLine(null);
+        } else {
+            console.debug('Too many errors, aborting')
+        }
+    }
+
     private handleCommandLine(input?: string) : void {
         try {
             this.printLn('');
@@ -59,17 +74,7 @@ export default class SimpleTerminal implements ITerminal {
                 this.input(this.handleCommandLine.bind(this));
             }
         } catch (e) {
-            this.printLn('');
-            this.printLn(e.message, 'error');
-            console.debug(e);
-            
-            this.errorCount++;
-            
-            if (this.errorCount < this.maxErrorCount) {
-                this.handleCommandLine(null);
-            } else {
-                console.debug('Too many errors, aborting')
-            }
+            this.handleException(e);
         }
     }
     
