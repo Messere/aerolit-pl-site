@@ -2,11 +2,11 @@ import IFileNode from "./IFileNode";
 import IFileNodeCollection from "./IFileNodeCollection";
 
 export default class DirNode implements IFileNode {
-    isDir: boolean = true;
-    isFile: boolean = false;
-    isExecutable: boolean = false;
-    name: string;
-    
+    public isDir: boolean = true;
+    public isFile: boolean = false;
+    public isExecutable: boolean = false;
+    public name: string;
+
     private children: IFileNodeCollection;
 
     constructor(name: string, children: IFileNodeCollection) {
@@ -14,15 +14,15 @@ export default class DirNode implements IFileNode {
         this.children = children;
     }
 
-    execute() : void {
-        throw new Error('Not executable');
+    public execute(): void {
+        throw new Error("Not executable");
     }
 
-    getContents(): Object {
+    public getContents(): object {
         return this.children;
     }
 
-    isEmpty(): boolean {
+    public isEmpty(): boolean {
         return Object.keys(this.children).length === 0;
     }
 }

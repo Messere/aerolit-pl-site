@@ -1,5 +1,5 @@
-import IPrompt from  './IPrompt';
-import IFileSystem from '../FileSystem/IFileSystem';
+import IFileSystem from "../FileSystem/IFileSystem";
+import IPrompt from "./IPrompt";
 
 export default class PromptWithCwd implements IPrompt {
 
@@ -13,7 +13,7 @@ export default class PromptWithCwd implements IPrompt {
         this.fileSystem = fileSystem;
     }
 
-    getPrompt() : string {
+    public getPrompt(): string {
         return this.prefix + this.fileSystem.getCwd() + this.suffix;
     }
 }

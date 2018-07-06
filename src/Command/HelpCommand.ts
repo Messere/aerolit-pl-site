@@ -9,14 +9,14 @@ export default class HelpCommand implements ICommand {
         this.commands = commands;
     }
 
-    showHelp(terminal: ITerminal) : void {
-        terminal.printLn('Built in help');
-        terminal.printLn('Usage:');
-        terminal.printLn(' help           - shows all commands');
-        terminal.printLn(' help <command> - shows help for command');
+    public showHelp(terminal: ITerminal): void {
+        terminal.printLn("Built in help");
+        terminal.printLn("Usage:");
+        terminal.printLn(" help           - shows all commands");
+        terminal.printLn(" help <command> - shows help for command");
     }
 
-    execute(args: Array<string>, terminal: ITerminal) : void {
+    public execute(args: string[], terminal: ITerminal): void {
         if (args.length > 0) {
             this.showCommandHelp(args[0], terminal);
         } else {
@@ -29,16 +29,16 @@ export default class HelpCommand implements ICommand {
         if (command) {
             command.showHelp(terminal);
         } else {
-            terminal.printLn('Unknown command: ' + command);
+            terminal.printLn(`Unknown command: ${command}`);
         }
     }
 
     private showSelfHelp(terminal: ITerminal) {
-        terminal.printLn('');
-        terminal.print('Commands: ')
-        for (const commandName in this.commands) {
-            terminal.print(commandName + ' ');
+        terminal.printLn("");
+        terminal.print("Commands: ");
+        for (const commandName of Object.keys(this.commands)) {
+            terminal.print(commandName + " ");
         }
-        terminal.printLn('Type help <command name> for details');
+        terminal.printLn("Type help <command name> for details");
     }
 }

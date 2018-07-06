@@ -1,16 +1,16 @@
-import ICommand from "./ICommand";
 import ITerminal from "../Terminal/ITerminal";
+import ICommand from "./ICommand";
 
 export default class FortuneCommand implements ICommand {
-    private apiEndpoint : string = 'https://helloacm.com/api/fortune/';
+    private apiEndpoint: string = "https://helloacm.com/api/fortune/";
 
-    showHelp(terminal: ITerminal) : void {
-        terminal.printLn('fortune - show random, possibly even funny, quote');
+    public showHelp(terminal: ITerminal): void {
+        terminal.printLn("fortune - show random, possibly even funny, quote");
     }
 
-    execute(args: Array<string>, terminal: ITerminal) : Promise<void> {
+    public execute(args: string[], terminal: ITerminal): Promise<void> {
         const promise = fetch(this.apiEndpoint).then((response) => {
-            return response.json()
+            return response.json();
         }).then((text) => {
             terminal.printLn(text);
         }).catch((reason) => {

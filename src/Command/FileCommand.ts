@@ -1,23 +1,23 @@
-import ICommand from "./ICommand";
 import IFileSystem from "../FileSystem/IFileSystem";
 import ITerminal from "../Terminal/ITerminal";
+import ICommand from "./ICommand";
 
 export default class FileCommand implements ICommand {
-    private fileSystem : IFileSystem;
+    private fileSystem: IFileSystem;
 
     constructor(fileSystem: IFileSystem) {
         this.fileSystem = fileSystem;
     }
 
-    showHelp(terminal: ITerminal) : void {
-        terminal.printLn('file <path> - show file type');
+    public showHelp(terminal: ITerminal): void {
+        terminal.printLn("file <path> - show file type");
     }
 
-    execute(args: Array<string>, terminal: ITerminal) : void {
+    public execute(args: string[], terminal: ITerminal): void {
         const path = args[0] || null;
 
         if (path === null) {
-            terminal.printLn('file: missing operand');
+            terminal.printLn("file: missing operand");
         } else if (!this.fileSystem.exists(path)) {
             terminal.printLn(`${path}: cannot open \` ${path}' (No such file or directory)`);
         } else {

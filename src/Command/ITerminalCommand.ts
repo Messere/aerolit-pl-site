@@ -1,5 +1,4 @@
 import ITerminal from "../Terminal/ITerminal";
 
-export default interface ITerminalCommand {
-    (terminal: ITerminal): void|Promise<void>;
-}
+type ITerminalCommand = (terminal: ITerminal) => void|Promise<void>;
+export default ITerminalCommand;

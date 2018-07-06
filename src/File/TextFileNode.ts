@@ -1,22 +1,22 @@
 import IFileNode from "./IFileNode";
 
 export default class TextFileNode implements IFileNode {
-    isDir: boolean = false;
-    isFile: boolean = true;
-    isExecutable: boolean = false;
-    name: string;
-    contents: string;    
+    public isDir: boolean = false;
+    public isFile: boolean = true;
+    public isExecutable: boolean = false;
+    public name: string;
+    public contents: string;
 
     constructor(name: string, contents: string) {
         this.name = name;
         this.contents = contents;
     }
 
-    execute() : void  {
-        throw new Error('Not executable');
+    public execute(): void  {
+        throw new Error("Not executable");
     }
 
-    getContents(): string {
+    public getContents(): string {
         return this.contents;
     }
 }

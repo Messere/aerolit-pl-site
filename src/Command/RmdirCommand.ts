@@ -1,24 +1,24 @@
-import ICommand from "./ICommand";
+import DirNode from "../File/DirNode";
 import IFileSystem from "../FileSystem/IFileSystem";
 import ITerminal from "../Terminal/ITerminal";
-import DirNode from "../File/DirNode";
+import ICommand from "./ICommand";
 
 export default class RmdirCommand implements ICommand {
-    private fileSystem : IFileSystem;
+    private fileSystem: IFileSystem;
 
     constructor(fileSystem: IFileSystem) {
         this.fileSystem = fileSystem;
     }
 
-    showHelp(terminal: ITerminal) : void {
-        terminal.printLn('rmdir <dir> - remove empty directory <dir>')
+    public showHelp(terminal: ITerminal): void {
+        terminal.printLn("rmdir <dir> - remove empty directory <dir>");
     }
 
-    execute(args: Array<string>, terminal: ITerminal) : void {
+    public execute(args: string[], terminal: ITerminal): void {
         const dirToRemove = args.shift();
 
-        if (typeof dirToRemove === 'undefined') {
-            terminal.printLn('rmdir: missing operand');
+        if (typeof dirToRemove === "undefined") {
+            terminal.printLn("rmdir: missing operand");
         } else {
             if (!this.fileSystem.exists(dirToRemove)) {
                 terminal.printLn(`rmdir: failed to remove '${dirToRemove}': No such file or directory`);

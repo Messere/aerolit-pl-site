@@ -1,59 +1,58 @@
 import ITerminal from "../Terminal/ITerminal";
 
-//-----------------------------------------------------------------------//
+// -----------------------------------------------------------------------//
 //    o      o     o    o     o    <o     <o>    o>    o
 //   .|.    \|.   \|/   //    X     \      |    <|    <|>
 //    /\     >\   /<    >\   /<     >\    /<     >\   /<
-//-----------------------------------------------------------------------//
+// -----------------------------------------------------------------------//
 // original artwork by Mr. Asciihead, posted on alt.ascii-art
 
-export default function macarena(args: Array<string>, terminal: ITerminal) {
+export default function macarena(args: string[], terminal: ITerminal) {
     const frames = [
-        "Macarena\n"+
-            "    o\n"+
-            "   .|.\n"+
+        "Macarena\n" +
+            "    o\n" +
+            "   .|.\n" +
             "    /\\",
-            
-        "acarena \n"+
-        "    o\n"+
-        "   \\|.\n"+
+
+        "acarena \n" +
+        "    o\n" +
+        "   \\|.\n" +
         "    >\\\n",
-    
-        "carena M\n"+
-        "    o\n"+
-        "   \\|/\n"+
+
+        "carena M\n" +
+        "    o\n" +
+        "   \\|/\n" +
         "   /<\n",
-    
-        "arena Ma\n"+
-        "    o\n"+
-        "    //\n"+
+
+        "arena Ma\n" +
+        "    o\n" +
+        "    //\n" +
         "    >\\\n",
-    
-        "rena Mac\n"+
-        "    o\n"+
-        "    X\n"+
+
+        "rena Mac\n" +
+        "    o\n" +
+        "    X\n" +
         "   /<\n",
-    
-        "ena Maca\n"+
-        "   <o\n"+
-        "    \\\n"+
+
+        "ena Maca\n" +
+        "   <o\n" +
+        "    \\\n" +
         "    >\\\n",
-        
-        "na Macar\n"+
-        "   <o>\n"+
-        "    |\n"+
+
+        "na Macar\n" +
+        "   <o>\n" +
+        "    |\n" +
         "   /<\n",
-    
-        "a Macare\n"+
-        "    o>\n"+
-        "   <|\n"+
+
+        "a Macare\n" +
+        "    o>\n" +
+        "   <|\n" +
         "    >\\\n",
-    
-    
-        " Macaren\n"+
-        "    o\n"+
-        "   <|>\n"+
-        "   /<\n"
+
+        " Macaren\n" +
+        "    o\n" +
+        "   <|>\n" +
+        "   /<\n",
     ];
 
     const timeOut = 200;
@@ -61,22 +60,20 @@ export default function macarena(args: Array<string>, terminal: ITerminal) {
     const numberOfFrames = frames.length;
     const timeToRun = 3 * numberOfFrames * timeOut;
 
-    const showFrame = function() {
+    const showFrame = () => {
         terminal.clear();
         terminal.printLn(frames[currentFrame]);
         currentFrame++;
         if (currentFrame >= numberOfFrames) {
             currentFrame = 0;
         }
-    }
+    };
 
     const interval = setInterval(showFrame, timeOut);
 
-    return Promise.resolve(null).then(
-        () => new Promise(
-            (resolve) => setTimeout(resolve, timeToRun)
-        )
-    ).then(() => {
+    return Promise.resolve(null).then(() => new Promise(
+        (resolve) => setTimeout(resolve, timeToRun),
+    )).then(() => {
         clearInterval(interval);
     });
 }

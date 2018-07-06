@@ -11,10 +11,12 @@
     "devDependencies": {
         "express": "^4.16.3",
         "tsc-watch": "^1.0.22",
+        "tslint": "^5.10.0",
         "typescript": "^2.9.2"
     },
     "scripts": {
         "start": "tsc-watch --onFirstSuccess \"cp node_modules/systemjs/dist/system-production.js public/\" --onSuccess \"node server.js\"",
-        "build": "tsc && cp node_modules/systemjs/dist/system-production.js public/ && cp node_modules/ua-parser-js/dist/ua-parser.pack.js public/"
+        "build": "tsc && cp node_modules/systemjs/dist/system-production.js public/ && cp node_modules/ua-parser-js/dist/ua-parser.pack.js public/",
+        "lint": "tslint --project ."
     }
 }

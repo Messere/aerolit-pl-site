@@ -1,27 +1,27 @@
-import IFileSystem from "./IFileSystem";
-import IFileNode from "../File/IFileNode";
 import DirNode from "../File/DirNode";
 import ExecutableFileNode from "../File/ExecutableFileNode";
-import TextFileNode from "../File/TextFileNode";
+import IFileNode from "../File/IFileNode";
 import IFileNodeCollection from "../File/IFileNodeCollection";
+import TextFileNode from "../File/TextFileNode";
+import IFileSystem from "./IFileSystem";
 
 export default class InMemoryFileSystem implements IFileSystem {
 
-    private directorySeparator: string = '/';
-    private directories: Object;
-    private currentWorkingDirectory: Array<string>;
+    public readonly directorySeparator: string = "/";
+    private directories: object;
+    private currentWorkingDirectory: string[];
 
-    constructor(initalDirectoryStructure: Object = {}) {
+    constructor(initalDirectoryStructure: object = {}) {
         this.directories = initalDirectoryStructure;
         this.currentWorkingDirectory = [];
     }
 
-    getCwd() : string {
+    public getCwd(): string {
         return this.directorySeparator
             + this.currentWorkingDirectory.join(this.directorySeparator);
     }
 
-    setCwd(path: string) : void {
+    public setCwd(path: string): void {
         const canonicalPath = this.getCanonicalPath(path);
         if (this.canonicalPathExists(canonicalPath)) {
             const file = this.getFileByCanonicalPath(canonicalPath);
@@ -35,24 +35,24 @@ export default class InMemoryFileSystem implements IFileSystem {
         }
     }
 
-    exists(path: string): boolean {
+    public exists(path: string): boolean {
         const canonicalPath = this.getCanonicalPath(path);
         return this.canonicalPathExists(canonicalPath);
     }
 
-    getFile(path: string): IFileNode {
+    public getFile(path: string): IFileNode {
         const canonicalPath = this.getCanonicalPath(path);
         return this.getFileByCanonicalPath(canonicalPath);
     }
 
-    remove(path: string): void {
+    public remove(path: string): void {
         const canonicalPath = this.getCanonicalPath(path);
         if (this.canonicalPathExists(canonicalPath)) {
             let partialFileSystem = this.directories;
             let lastChunk = null;
             for (
-                let chunkPosition = 0; 
-                chunkPosition < canonicalPath.length; 
+                let chunkPosition = 0;
+                chunkPosition < canonicalPath.length;
                 chunkPosition++
             ) {
                 lastChunk = canonicalPath[chunkPosition];
@@ -66,7 +66,7 @@ export default class InMemoryFileSystem implements IFileSystem {
         }
     }
 
-    add(path: string, file: IFileNode): void {
+    public add(path: string, file: IFileNode): void {
         const canonicalPath = this.getCanonicalPath(path);
         const fileNode = this.getFileByCanonicalPath(canonicalPath);
 
@@ -84,7 +84,7 @@ export default class InMemoryFileSystem implements IFileSystem {
         partialFileSystem[file.name] = file.getContents();
     }
 
-    private canonicalPathExists(canonicalPath: Array<string>) : boolean {        
+    private canonicalPathExists(canonicalPath: string[]): boolean {
         let partialFileSystem = this.directories;
         for (const chunk of canonicalPath) {
             partialFileSystem = partialFileSystem[chunk] || null;
@@ -95,12 +95,12 @@ export default class InMemoryFileSystem implements IFileSystem {
         return true;
     }
 
-    private getFileByCanonicalPath(canonicalPath: Array<string>) : IFileNode {
+    private getFileByCanonicalPath(canonicalPath: string[]): IFileNode {
         let partialFileSystem = this.directories;
         let lastChunk = null;
         for (
-            let chunkPosition = 0; 
-            chunkPosition < canonicalPath.length; 
+            let chunkPosition = 0;
+            chunkPosition < canonicalPath.length;
             chunkPosition++
         ) {
             lastChunk = canonicalPath[chunkPosition];
@@ -110,47 +110,47 @@ export default class InMemoryFileSystem implements IFileSystem {
         }
 
         return this.getFileNodeFromFileSystem(
-            lastChunk, 
-            partialFileSystem[lastChunk]
+            lastChunk,
+            partialFileSystem[lastChunk],
         );
     }
 
-    private getFileNodeFromFileSystem(name: string, fileData: any) : IFileNode {
+    private getFileNodeFromFileSystem(name: string, fileData: any): IFileNode {
 
         if (name === null) {
-            name = '/'
+            name = this.directorySeparator;
             fileData = this.directories;
         }
 
         switch (typeof fileData) {
-            case 'object': 
+            case "object":
                 return new DirNode(
-                    name, 
-                    this.getDirectoryChildren(fileData)
+                    name,
+                    this.getDirectoryChildren(fileData),
                 );
-            case 'function':
+            case "function":
                 return new ExecutableFileNode(name, fileData);
-            case 'string':
-                return new TextFileNode(name, fileData);                
+            case "string":
+                return new TextFileNode(name, fileData);
         }
 
         throw new Error(`Unsupported object ${name} -> ${typeof fileData} in filesystem`);
     }
 
-    private getDirectoryChildren(fileSystem: object) : IFileNodeCollection {
+    private getDirectoryChildren(fileSystem: object): IFileNodeCollection {
         const children = {};
 
-        for (const child in fileSystem) {
+        for (const child of Object.keys(fileSystem)) {
             children[child] = this.getFileNodeFromFileSystem(
-                child, 
-                fileSystem[child]
+                child,
+                fileSystem[child],
             );
         }
 
         return children;
     }
 
-    private getCanonicalPath(path: string) : Array<string> {
+    private getCanonicalPath(path: string): string[] {
 
         if (path === null) {
             path =  this.getCwd();
@@ -164,10 +164,10 @@ export default class InMemoryFileSystem implements IFileSystem {
         const chunks = path.split(this.directorySeparator);
         for (const chunk of chunks) {
             switch (chunk) {
-                case '':
-                case '.':
+                case "":
+                case ".":
                     continue;
-                case '..':
+                case "..":
                     canonicalPath.pop();
                     break;
                 default:
@@ -175,7 +175,7 @@ export default class InMemoryFileSystem implements IFileSystem {
                     break;
             }
         }
-        
+
         return canonicalPath;
     }
 }

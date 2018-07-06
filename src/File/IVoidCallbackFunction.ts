@@ -1,3 +1,2 @@
-export default interface IVoidCallbackFunction {
-    (): void;
-}
+type IVoidCallbackFunction = () => void;
+export default IVoidCallbackFunction;

@@ -1,3 +1,2 @@
-export default interface ICommandHandler {
-    (input: string) : void;
-}
+type ICommandHandler = (input: string) => void;
+export default ICommandHandler;

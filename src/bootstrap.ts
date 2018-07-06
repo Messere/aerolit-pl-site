@@ -1,9 +1,9 @@
-import SimpleTerminal from "./Terminal/SimpleTerminal";
-import PromptWithCwd from "./Prompt/PromptWithCwd";
-import InMemoryFileSystem from "./FileSystem/InMemoryFileSystem";
-import files from "./files";
 import BuiltInCommands from "./Command/BuiltInCommands";
 import CommandLineParser from "./Command/CommandLineParser";
+import files from "./files";
+import InMemoryFileSystem from "./FileSystem/InMemoryFileSystem";
+import PromptWithCwd from "./Prompt/PromptWithCwd";
+import SimpleTerminal from "./Terminal/SimpleTerminal";
 import Terminal from "./Terminal/Terminal";
 import Uptime from "./Uptime/Uptime";
 
@@ -13,28 +13,28 @@ const fileSystem = new InMemoryFileSystem(files);
 
 const prompt = new PromptWithCwd(
     fileSystem,
-    'aerolit.pl [',
-    ']$ '
+    "aerolit.pl [",
+    "]$ ",
 );
 
 const uaParser = new UAParser();
 const uptime = new Uptime(Date.now());
 const commands = new BuiltInCommands(
-    fileSystem, 
+    fileSystem,
     uaParser,
-    uptime
+    uptime,
 );
 const commandLineParser = new CommandLineParser(
-    commands, 
-    fileSystem
+    commands,
+    fileSystem,
 );
 
 // show terminal on screen
 const terminal = new SimpleTerminal(
     prompt,
     commandLineParser,
-    new Terminal()
+    new Terminal(),
 );
 
-terminal.renderTo(document.getElementById('main'));
+terminal.renderTo(document.getElementById("main"));
 terminal.start();

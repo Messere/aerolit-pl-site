@@ -1,6 +1,8 @@
-import IFileNode from '../File/IFileNode';
+import IFileNode from "../File/IFileNode";
 
 export default interface IFileSystem {
+    readonly directorySeparator: string;
+
     /**
      * get current working directory
      */
@@ -8,7 +10,7 @@ export default interface IFileSystem {
 
     /**
      * set current working directory to path
-     * @param path 
+     * @param path
      */
     setCwd(path: string): void;
 

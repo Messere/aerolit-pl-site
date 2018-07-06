@@ -1,12 +1,12 @@
-import IVoidCallbackFunction from './IVoidCallbackFunction';
 import IFileNode from "./IFileNode";
+import IVoidCallbackFunction from "./IVoidCallbackFunction";
 
 export default class ExecutableFileNode implements IFileNode {
-    isDir: boolean = false;
-    isFile: boolean = true;
-    isExecutable: boolean = true;
-    name: string;
-    
+    public isDir: boolean = false;
+    public isFile: boolean = true;
+    public isExecutable: boolean = true;
+    public name: string;
+
     private callback: IVoidCallbackFunction;
 
     constructor(name: string, callback: IVoidCallbackFunction) {
@@ -14,11 +14,11 @@ export default class ExecutableFileNode implements IFileNode {
         this.callback = callback;
     }
 
-    execute() : void  {
+    public execute(): void  {
         this.callback();
     }
 
-    getContents(): IVoidCallbackFunction {
+    public getContents(): IVoidCallbackFunction {
         return this.callback;
     }
 }
