@@ -34,6 +34,7 @@ export default class HelpCommand implements ICommand {
     }
 
     private showSelfHelp(terminal: ITerminal) {
+        terminal.printLn('');
         terminal.print('Commands: ')
         for (const commandName in this.commands) {
             terminal.print(commandName + ' ');
