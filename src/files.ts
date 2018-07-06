@@ -1,3 +1,7 @@
+/**
+ * default contents of filesystem
+ */
+
 const openUrl = (url) => {
     location.assign(url);
 }
