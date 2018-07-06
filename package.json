@@ -18,6 +18,7 @@
         "tsify": "^4.0.0",
         "tslint": "^5.10.0",
         "typescript": "^2.9.2",
+        "uglifyify": "^5.0.1",
         "vinyl-source-stream": "^2.0.0"
     },
     "scripts": {

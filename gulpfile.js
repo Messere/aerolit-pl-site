@@ -1,31 +1,34 @@
-var gulp = require("gulp");
-var browserify = require("browserify");
-var source = require('vinyl-source-stream');
-var tsify = require("tsify");
-var destinationDir = "dist";
-var exorcist = require('exorcist');
-var path = require('path');
+const gulp = require("gulp");
+const browserify = require("browserify");
+const source = require("vinyl-source-stream");
+const tsify = require("tsify");
 
-var paths = {
-    pages: ['src/Web/*.html']
+const exorcist = require("exorcist");
+const path = require("path");
+
+const paths = {
+    pages: ["src/Web/*.html"],
+    destinationDir: "dist",
+    entryPoint: "src/Web/bootstrap.ts"
 };
 
 gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest(destinationDir));
+        .pipe(gulp.dest(paths.destinationDir));
 });
 
 gulp.task("default", ["copy-html"], function () {
     return browserify({
-        basedir: '.',
+        basedir: ".",
         debug: true,
-        entries: ['src/Web/bootstrap.ts'],
+        entries: [paths.entryPoint],
         cache: {},
         packageCache: {}
     })
     .plugin(tsify)
+    .transform('uglifyify')
     .bundle()
-    .pipe(exorcist(path.join(destinationDir, 'bundle.js.map')))
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest(destinationDir));
+    .pipe(exorcist(path.join(paths.destinationDir, "bundle.js.map")))
+    .pipe(source("bundle.js"))
+    .pipe(gulp.dest(paths.destinationDir));
 });
