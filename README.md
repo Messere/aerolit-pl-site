@@ -2,10 +2,15 @@
 
 Source code for http://aerolit.pl
 
-## Build & run
+## Development
 
 `npm install` to fetch dependencies
 `npm start` to compile and start built in server on port 7203
+
+## Deployment
+
+`tsc` to compile TypeScript into one bundle (`public/main.js`) then simply put 
+contents of `public` catalog into directory served by WWW server.
 
 ## Dependencies
 
