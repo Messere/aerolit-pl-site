@@ -1,3 +1,5 @@
+import macarena from "./Bin/Macarena";
+
 /**
  * default contents of filesystem
  */
@@ -7,6 +9,10 @@ const openUrl = (url) => {
 }
 
 const files = {
+    'bin': {
+        'macarena': macarena,
+        'src': openUrl.bind(this, 'https://github.com/Messere'),
+    },
     'www': {
         'aerolit.pl': openUrl.bind(this, 'https://aerolit.pl/'),
         'messer': openUrl.bind(this, 'http://messer.aerolit.pl/'),
@@ -26,8 +32,7 @@ const files = {
             'twitter': openUrl.bind(this, 'https://twitter.com/DarekSieradzki'),
         }
     },
-    'readme.txt': "Written as an excersise in TypeScript programming.\n\nReleased under MIT.\nTo see/fork source code execute /src",
-    'src': openUrl.bind(this, 'https://github.com/Messere'),
+    'readme.txt': "Written as an excersise in TypeScript programming.\n\nReleased under MIT.\nTo see/fork source code execute /bin/src",
 };
 
 export default files;
