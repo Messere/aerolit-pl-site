@@ -5,16 +5,18 @@
     "author": "Dariusz Sieradzki",
     "license": "MIT",
     "dependencies": {
-        "systemjs": "^0.21.4",
         "ua-parser-js": "^0.7.18"
     },
     "devDependencies": {
+        "@types/jasmine": "^2.8.8",
         "@types/ua-parser-js": "^0.7.32",
         "browserify": "^16.2.2",
         "exorcist": "^1.0.1",
         "express": "^4.16.3",
         "gulp": "^3.9.1",
         "gulp-typescript": "^5.0.0-alpha.3",
+        "jasmine": "^3.1.0",
+        "jasmine-ts": "^0.2.1",
         "tsify": "^4.0.0",
         "tslint": "^5.10.0",
         "typescript": "^2.9.2",
@@ -24,6 +26,7 @@
     "scripts": {
         "build": "gulp",
         "lint": "tslint --project .",
-        "cleanup": "rm -r dist/*"
+        "cleanup": "rm -r dist/*",
+        "test": "jasmine-ts JASMINE_CONFIG_PATH=./jasmine.json"
     }
 }

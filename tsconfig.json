@@ -8,6 +8,6 @@
         "inlineSources": true
     },
     "include": [
-        "src/**/*"
+        "src/**/*.ts"
     ]
 }
