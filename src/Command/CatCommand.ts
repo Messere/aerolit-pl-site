@@ -25,9 +25,7 @@ export default class CatCommand implements ICommand {
             if (file.isDir) {
                 terminal.printLn(`cat: ${path}: Is a directory`);
             } else {
-                file.getContents().toString().split("\n").forEach((line) => {
-                    terminal.printLn(line);
-                });
+                terminal.printLn(file.getContents().toString());
             }
         }
     }
