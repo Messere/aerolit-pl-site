@@ -10,11 +10,18 @@ import FileCommand from "./FileCommand";
 import RmCommand from "./RmCommand";
 import RmdirCommand from "./RmdirCommand";
 import ClearCommand from "./ClearCommand";
+import UnameCommand from "./UnameCommand";
+import PsCommand from "./PsCommand";
+import IUptime from "../Uptime/IUptime";
 
 export default class BuiltInCommands implements ICommandCollection {
     [propName: string]: ICommand;
 
-    constructor(fileSystem: IFileSystem) {
+    constructor(
+        fileSystem: IFileSystem,
+        uaParser: any,
+        uptime: IUptime
+    ) {
         this.help = new HelpCommand(this);
         this.ls = new LsCommand(fileSystem);
         this.pwd = new PwdCommand(fileSystem);
@@ -24,5 +31,7 @@ export default class BuiltInCommands implements ICommandCollection {
         this.rm = new RmCommand(fileSystem);
         this.rmdir = new RmdirCommand(fileSystem);
         this.clear = new ClearCommand();
+        this.uname = new UnameCommand(uaParser);
+        this.ps = new PsCommand(uaParser, uptime);
     }
 }

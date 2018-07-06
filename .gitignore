@@ -32,3 +32,4 @@ node_modules
 public/main.js
 public/main.js.map
 public/system-production.js
+public/ua-parser.pack.js

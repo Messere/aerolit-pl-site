@@ -5,6 +5,9 @@ import files from "./files";
 import BuiltInCommands from "./Command/BuiltInCommands";
 import CommandLineParser from "./Command/CommandLineParser";
 import Terminal from "./Terminal/Terminal";
+import Uptime from "./Uptime/Uptime";
+
+declare const UAParser: any;
 
 const fileSystem = new InMemoryFileSystem(files);
 
@@ -14,7 +17,13 @@ const prompt = new PromptWithCwd(
     ']$ '
 );
 
-const commands = new BuiltInCommands(fileSystem);
+const uaParser = new UAParser();
+const uptime = new Uptime(Date.now());
+const commands = new BuiltInCommands(
+    fileSystem, 
+    uaParser,
+    uptime
+);
 const commandLineParser = new CommandLineParser(
     commands, 
     fileSystem
