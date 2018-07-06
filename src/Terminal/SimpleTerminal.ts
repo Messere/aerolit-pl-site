@@ -67,4 +67,8 @@ export default class SimpleTerminal implements ITerminal {
     start() : void {
         this.handleCommandLine(null);
     }
+
+    clear() : void {
+        this.terminal.clear();
+    }
 }

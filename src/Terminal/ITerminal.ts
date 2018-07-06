@@ -6,4 +6,5 @@ export default interface ITerminal {
     input(commandHandler: ICommandHandler): void;
     renderTo(node: HTMLElement): void;
     start(): void;
+    clear(): void;
 }

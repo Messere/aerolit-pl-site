@@ -9,6 +9,7 @@ import CatCommand from "./CatCommand";
 import FileCommand from "./FileCommand";
 import RmCommand from "./RmCommand";
 import RmdirCommand from "./RmdirCommand";
+import ClearCommand from "./ClearCommand";
 
 export default class BuiltInCommands implements ICommandCollection {
     [propName: string]: ICommand;
@@ -22,5 +23,6 @@ export default class BuiltInCommands implements ICommandCollection {
         this.file = new FileCommand(fileSystem);
         this.rm = new RmCommand(fileSystem);
         this.rmdir = new RmdirCommand(fileSystem);
+        this.clear = new ClearCommand();
     }
 }
