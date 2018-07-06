@@ -31,3 +31,4 @@ node_modules
 # built files
 public/main.js
 public/main.js.map
+public/system-production.js
