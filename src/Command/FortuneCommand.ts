@@ -8,16 +8,13 @@ export default class FortuneCommand implements ICommand {
         terminal.printLn('fortune - show random, possibly even funny, quote');
     }
 
-    private formatFortune(fortune: string) : Array<string> {
-        let fortuneLines = fortune.split(/\n/);
-        return fortuneLines;
-    }
-
     execute(args: Array<string>, terminal: ITerminal) : Promise<void> {
         const promise = fetch(this.apiEndpoint).then((response) => {
             return response.json()
         }).then((text) => {
-            this.formatFortune(text).forEach((line) => terminal.printLn(line));
+            terminal.printLn(text);
+        }).catch((reason) => {
+            terminal.printLn(`Error fetching the cookie for you: ${reason}`);
         });
 
         return promise;
