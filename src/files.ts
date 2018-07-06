@@ -1,3 +1,4 @@
+import asciiArt from "./ascii";
 import macarena from "./Bin/Macarena";
 
 /**
@@ -9,6 +10,7 @@ const openUrl = (url) => {
 };
 
 const files = {
+    "ascii-art": asciiArt,
     "bin": {
         macarena,
         src: openUrl.bind(this, "https://github.com/Messere"),
