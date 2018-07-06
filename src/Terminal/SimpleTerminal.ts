@@ -43,12 +43,21 @@ export default class SimpleTerminal implements ITerminal {
 
     private handleCommandLine(input?: string) : void {
         try {
+            this.printLn('');
             if (input !== null && input.trim() !== '') {
                 const executableCommand = this.commandLineParser.handle(input);
-                executableCommand(this);
+                const promise = executableCommand(this);
+
+                if (typeof promise === 'undefined') {
+                    this.input(this.handleCommandLine.bind(this));    
+                } else {
+                    promise.then(() => {
+                        this.input(this.handleCommandLine.bind(this));
+                    });
+                }                
+            } else {
+                this.input(this.handleCommandLine.bind(this));
             }
-            this.printLn('');
-            this.input(this.handleCommandLine.bind(this));
         } catch (e) {
             this.printLn('');
             this.printLn(e.message, 'error');
