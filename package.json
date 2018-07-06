@@ -6,17 +6,23 @@
     "license": "MIT",
     "dependencies": {
         "systemjs": "^0.21.4",
-        "ua-parser-js": "github:faisalman/ua-parser-js"
+        "ua-parser-js": "^0.7.18"
     },
     "devDependencies": {
+        "@types/ua-parser-js": "^0.7.32",
+        "browserify": "^16.2.2",
+        "exorcist": "^1.0.1",
         "express": "^4.16.3",
-        "tsc-watch": "^1.0.22",
+        "gulp": "^3.9.1",
+        "gulp-typescript": "^5.0.0-alpha.3",
+        "tsify": "^4.0.0",
         "tslint": "^5.10.0",
-        "typescript": "^2.9.2"
+        "typescript": "^2.9.2",
+        "vinyl-source-stream": "^2.0.0"
     },
     "scripts": {
-        "start": "tsc-watch --onFirstSuccess \"cp node_modules/systemjs/dist/system-production.js public/\" --onSuccess \"node server.js\"",
-        "build": "tsc && cp node_modules/systemjs/dist/system-production.js public/ && cp node_modules/ua-parser-js/dist/ua-parser.pack.js public/",
-        "lint": "tslint --project ."
+        "build": "gulp",
+        "lint": "tslint --project .",
+        "cleanup": "rm -r dist/*"
     }
 }

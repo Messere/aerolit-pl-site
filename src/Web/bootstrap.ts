@@ -1,13 +1,12 @@
-import BuiltInCommands from "./Command/BuiltInCommands";
-import CommandLineParser from "./Command/CommandLineParser";
+import * as UAParser from "ua-parser-js";
+import BuiltInCommands from "../Command/BuiltInCommands";
+import CommandLineParser from "../Command/CommandLineParser";
+import InMemoryFileSystem from "../FileSystem/InMemoryFileSystem";
+import PromptWithCwd from "../Prompt/PromptWithCwd";
+import SimpleTerminal from "../Terminal/SimpleTerminal";
+import Terminal from "../Terminal/Terminal";
+import Uptime from "../Uptime/Uptime";
 import files from "./files";
-import InMemoryFileSystem from "./FileSystem/InMemoryFileSystem";
-import PromptWithCwd from "./Prompt/PromptWithCwd";
-import SimpleTerminal from "./Terminal/SimpleTerminal";
-import Terminal from "./Terminal/Terminal";
-import Uptime from "./Uptime/Uptime";
-
-declare const UAParser: any;
 
 const fileSystem = new InMemoryFileSystem(files);
 
@@ -36,5 +35,7 @@ const terminal = new SimpleTerminal(
     new Terminal(),
 );
 
+document.getElementById("main").innerHTML = "";
 terminal.renderTo(document.getElementById("main"));
+
 terminal.start();

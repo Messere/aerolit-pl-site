@@ -1,5 +1,5 @@
+import macarena from "../Bin/Macarena";
 import asciiArt from "./ascii";
-import macarena from "./Bin/Macarena";
 
 /**
  * default contents of filesystem
