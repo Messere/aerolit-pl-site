@@ -13,6 +13,7 @@
         "tsc-watch": "^1.0.22"
     },
     "scripts": {
-        "start": "tsc-watch --onSuccess \"node server.js\""
+        "start": "tsc-watch --onFirstSuccess \"cp node_modules/systemjs/dist/system-production.js public/\" --onSuccess \"node server.js\"",
+        "build": "tsc && cp node_modules/systemjs/dist/system-production.js public/"
     }
 }

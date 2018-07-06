@@ -1,6 +1,6 @@
 # aerolit.pl
 
-Source code for http://aerolit.pl
+Source code for [http://aerolit.pl](http://aerolit.pl)
 
 ## Development
 
@@ -9,8 +9,8 @@ Source code for http://aerolit.pl
 
 ## Deployment
 
-`tsc` to compile TypeScript into one bundle (`public/main.js`) then simply put 
-contents of `public` catalog into directory served by WWW server.
+`npm run build` to compile / copy dependencies to `public` directory, then simply put
+contents of `public` into directory served via http(s).
 
 ## Dependencies
 
