@@ -15,6 +15,7 @@ import PsCommand from "./PsCommand";
 import IUptime from "../Uptime/IUptime";
 import FortuneCommand from "./FortuneCommand";
 import WhoamiCommand from "./WhoamiCommand";
+import WgetCommand from "./WgetCommand";
 
 export default class BuiltInCommands implements ICommandCollection {
     [propName: string]: ICommand;
@@ -37,5 +38,6 @@ export default class BuiltInCommands implements ICommandCollection {
         this.ps = new PsCommand(uaParser, uptime);
         this.fortune = new FortuneCommand();
         this.whoami = new WhoamiCommand();
+        this.wget = new WgetCommand(fileSystem);
     }
 }
