@@ -13,7 +13,7 @@ const files = {
     "ascii-art": asciiArt,
     "bin": {
         macarena,
-        src: openUrl.bind(this, "https://github.com/Messere"),
+        src: openUrl.bind(this, "https://github.com/Messere/aerolit-pl-site"),
     },
     "readme.txt":
         "Written as an excersise in TypeScript programming.\n\n" +
