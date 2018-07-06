@@ -7,6 +7,8 @@ import PwdCommand from "./PwdCommand";
 import CdCommand from "./CdCommand";
 import CatCommand from "./CatCommand";
 import FileCommand from "./FileCommand";
+import RmCommand from "./RmCommand";
+import RmdirCommand from "./RmdirCommand";
 
 export default class BuiltInCommands implements ICommandCollection {
     [propName: string]: ICommand;
@@ -18,5 +20,7 @@ export default class BuiltInCommands implements ICommandCollection {
         this.cd = new CdCommand(fileSystem);
         this.cat = new CatCommand(fileSystem);
         this.file = new FileCommand(fileSystem);
+        this.rm = new RmCommand(fileSystem);
+        this.rmdir = new RmdirCommand(fileSystem);
     }
 }

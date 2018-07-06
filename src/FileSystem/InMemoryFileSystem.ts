@@ -61,8 +61,9 @@ export default class InMemoryFileSystem implements IFileSystem {
                 }
             }
             delete partialFileSystem[lastChunk];
+        } else {
+            throw new Error(`${path} does not exist`);
         }
-        throw new Error(`${path} does not exist`);
     }
 
     add(path: string, file: IFileNode): void {

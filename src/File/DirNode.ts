@@ -21,4 +21,8 @@ export default class DirNode implements IFileNode {
     getContents(): Object {
         return this.children;
     }
+
+    isEmpty(): boolean {
+        return Object.keys(this.children).length === 0;
+    }
 }
