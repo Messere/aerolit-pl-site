@@ -32,4 +32,14 @@ describe("Fortune command", () => {
             "Error fetching the cookie for you: Internal Server Error",
         );
     });
+
+    it("should display error on fetch exception", async () => {
+        fetchMock.get("https://helloacm.com/api/fortune/", {
+            throws: new Error("fetch failed you"),
+        });
+        await fortuneCommand.execute([], terminalSpy);
+        expect(terminalSpy.printLn).toHaveBeenCalledWith(
+            "Error fetching the cookie for you: fetch failed you",
+        );
+    });
 });
