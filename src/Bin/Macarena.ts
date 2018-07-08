@@ -7,7 +7,11 @@ import ITerminal from "../Terminal/ITerminal";
 // -----------------------------------------------------------------------//
 // original artwork by Mr. Asciihead, posted on alt.ascii-art
 
-export default function macarena(args: string[], terminal: ITerminal) {
+export default function macarena(
+    args: string[],
+    terminal: ITerminal,
+    timeToRun: number = 5400,
+) {
     const frames = [
         "Macarena\n" +
             "    o\n" +
@@ -57,14 +61,12 @@ export default function macarena(args: string[], terminal: ITerminal) {
 
     const timeOut = 200;
     let currentFrame = 0;
-    const numberOfFrames = frames.length;
-    const timeToRun = 3 * numberOfFrames * timeOut;
 
     const showFrame = () => {
         terminal.clear();
         terminal.printLn(frames[currentFrame]);
         currentFrame++;
-        if (currentFrame >= numberOfFrames) {
+        if (currentFrame >= frames.length) {
             currentFrame = 0;
         }
     };

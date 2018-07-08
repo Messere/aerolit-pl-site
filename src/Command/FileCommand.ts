@@ -19,7 +19,7 @@ export default class FileCommand implements ICommand {
         if (path === null) {
             terminal.printLn("file: missing operand");
         } else if (!this.fileSystem.exists(path)) {
-            terminal.printLn(`${path}: cannot open \` ${path}' (No such file or directory)`);
+            terminal.printLn(`${path}: cannot open \`${path}' (No such file or directory)`);
         } else {
             const file = this.fileSystem.getFile(path);
 

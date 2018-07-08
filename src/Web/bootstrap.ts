@@ -1,4 +1,4 @@
-import * as UAParser from "ua-parser-js";
+import {UAParser} from "ua-parser-js";
 import BuiltInCommands from "../Command/BuiltInCommands";
 import CommandLineParser from "../Command/CommandLineParser";
 import InMemoryFileSystem from "../FileSystem/InMemoryFileSystem";
