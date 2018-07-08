@@ -14,8 +14,6 @@ contents of `dist` into directory served via http(s).
 
 ## Dependencies
 
-This software uses [SystemJs](https://github.com/systemjs/systemjs) for module loading.
-
 [Terminal.ts](src/Terminal/Terminal.ts) is based on [terminaljs](https://github.com/eosterberg/terminaljs),
 rewritten in TypeScript, slightly simplified in some places (lacks `sleep`, `password` and `confirm`)
 and slightly expanded in others (e.g. rudimentary support in styling printed output + ability to print
