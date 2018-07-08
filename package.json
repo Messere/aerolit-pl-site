@@ -1,22 +1,30 @@
 {
     "name": "aerolit.pl",
     "description": "aerolit.pl homepage",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "Dariusz Sieradzki",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Messere/aerolit-pl-site"
+    },
     "dependencies": {
         "ua-parser-js": "^0.7.18"
     },
     "devDependencies": {
+        "@types/fetch-mock": "^6.0.3",
         "@types/jasmine": "^2.8.8",
+        "@types/node-fetch": "^2.1.1",
         "@types/ua-parser-js": "^0.7.32",
         "browserify": "^16.2.2",
         "exorcist": "^1.0.1",
         "express": "^4.16.3",
+        "fetch-mock": "^6.5.0",
         "gulp": "^3.9.1",
         "gulp-typescript": "^5.0.0-alpha.3",
         "jasmine": "^3.1.0",
         "jasmine-ts": "^0.2.1",
+        "node-fetch": "^2.1.2",
         "tsify": "^4.0.0",
         "tslint": "^5.10.0",
         "typescript": "^2.9.2",

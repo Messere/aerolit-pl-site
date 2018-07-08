@@ -29,7 +29,7 @@ export default class HelpCommand implements ICommand {
         if (command) {
             command.showHelp(terminal);
         } else {
-            terminal.printLn(`Unknown command: ${command}`);
+            terminal.printLn(`Unknown command: ${commandName}`);
         }
     }
 

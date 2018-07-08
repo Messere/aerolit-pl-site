@@ -8,15 +8,16 @@ export default class FortuneCommand implements ICommand {
         terminal.printLn("fortune - show random, possibly even funny, quote");
     }
 
-    public execute(args: string[], terminal: ITerminal): Promise<void> {
-        const promise = fetch(this.apiEndpoint).then((response) => {
-            return response.json();
-        }).then((text) => {
-            terminal.printLn(text);
-        }).catch((reason) => {
-            terminal.printLn(`Error fetching the cookie for you: ${reason}`);
-        });
-
-        return promise;
+    public async execute(args: string[], terminal: ITerminal): Promise<void> {
+        try {
+            const response = await fetch(this.apiEndpoint);
+            if (response.status === 200) {
+                terminal.printLn(await response.json());
+            } else {
+                throw new Error(response.statusText);
+            }
+        } catch (e) {
+            terminal.printLn(`Error fetching the cookie for you: ${e.message}`);
+        }
     }
 }
