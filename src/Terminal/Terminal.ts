@@ -2,7 +2,7 @@ import ICommandHandler from "./ICommandHandler";
 
 export default class Terminal {
 
-    public html: HTMLElement;
+    public container: HTMLElement;
     private innerWindow: HTMLElement;
     private output: HTMLElement;
     private inputLine: HTMLElement;
@@ -12,8 +12,8 @@ export default class Terminal {
     private firstPrompt = true;
 
     constructor() {
-        this.html = document.createElement("div");
-        this.html.className = "Terminal";
+        this.container = document.createElement("div");
+        this.container.className = "Terminal";
 
         this.innerWindow = document.createElement("div");
         this.output = document.createElement("p");
@@ -27,7 +27,7 @@ export default class Terminal {
         this.inputElement.appendChild(this.cursor);
         this.innerWindow.appendChild(this.output);
         this.innerWindow.appendChild(this.inputElement);
-        this.html.appendChild(this.innerWindow);
+        this.container.appendChild(this.innerWindow);
 
         this.setBackgroundColor("black");
         this.setTextColor("white");
@@ -35,8 +35,8 @@ export default class Terminal {
         this.setWidth("100%");
         this.setHeight("100%");
 
-        this.html.style.fontFamily = "Monaco, Courier";
-        this.html.style.margin = "0";
+        this.container.style.fontFamily = "Monaco, Courier";
+        this.container.style.margin = "0";
         this.innerWindow.style.padding = "10px";
         this.inputElement.style.margin = "0";
         this.output.style.margin = "0";
@@ -69,7 +69,7 @@ export default class Terminal {
 
         this.inputLine.textContent = "";
         this.inputElement.style.display = "inline-block";
-        this.html.appendChild(inputField);
+        this.container.appendChild(inputField);
 
         this.fireCursorInterval(inputField);
 
@@ -86,7 +86,7 @@ export default class Terminal {
             this.cursor.style.display = "inline";
         };
 
-        this.html.onclick = () => {
+        this.container.onclick = () => {
             inputField.focus();
         };
 
@@ -105,7 +105,7 @@ export default class Terminal {
                 this.inputElement.style.display = "none";
                 const inputValue = inputField.value;
                 this.print(inputValue);
-                this.html.removeChild(inputField);
+                this.container.removeChild(inputField);
                 if (typeof(callback) === "function") {
                     callback(inputValue);
                 }
@@ -132,20 +132,20 @@ export default class Terminal {
     }
 
     public setTextColor(col: string) {
-        this.html.style.color = col;
+        this.container.style.color = col;
         this.cursor.style.background = col;
     }
 
     public setBackgroundColor(col: string) {
-        this.html.style.background = col;
+        this.container.style.background = col;
     }
 
     public setWidth(width: string) {
-        this.html.style.width = width;
+        this.container.style.width = width;
     }
 
     public setHeight(height: string) {
-        this.html.style.height = height;
+        this.container.style.height = height;
     }
 
     private makeNewLine(message: string, className?: string) {
@@ -158,13 +158,12 @@ export default class Terminal {
     }
 
     private fireCursorInterval(inputField: HTMLElement) {
-        setTimeout(() => {
+        setInterval(() => {
             if (inputField.parentElement) {
                 this.cursor.style.visibility =
                     this.cursor.style.visibility === "visible"
                     ? "hidden"
                     : "visible";
-                this.fireCursorInterval(inputField);
             }
         }, 500);
     }

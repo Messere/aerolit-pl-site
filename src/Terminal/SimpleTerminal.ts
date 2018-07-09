@@ -38,7 +38,7 @@ export default class SimpleTerminal implements ITerminal {
     }
 
     public renderTo(node: HTMLElement): void {
-        node.appendChild(this.terminal.html);
+        node.appendChild(this.terminal.container);
     }
 
     public start(): void {
