@@ -1,22 +1,20 @@
-import "jasmine";
-import DirNode from "../File/DirNode";
-import TextFileNode from "../File/TextFileNode";
+import InMemoryFileSystem from "../FileSystem/InMemoryFileSystem";
 import CatCommand from "./CatCommand";
 
 describe("Cat command", () => {
     let catCommand;
-    let fileSystemMock;
+    let fileSystem;
     let terminalSpy;
 
     beforeEach(() => {
-        fileSystemMock = {
-            exists: () => null,
-            getFile: () => null,
-        };
+        fileSystem = new InMemoryFileSystem({
+            "dirName": {},
+            "testFile.txt": "foo bar",
+        });
 
         terminalSpy = jasmine.createSpyObj("ITerminal", ["printLn"]);
 
-        catCommand = new CatCommand(fileSystemMock);
+        catCommand = new CatCommand(fileSystem);
     });
 
     it("should print help to terminal", () => {
@@ -32,21 +30,14 @@ describe("Cat command", () => {
     });
 
     it("should require existing file", () => {
-        spyOn(fileSystemMock, "exists").and.returnValue(false);
-
-        catCommand.execute(["testFile.txt"], terminalSpy);
+        catCommand.execute(["testFile2.txt"], terminalSpy);
 
         expect(terminalSpy.printLn).toHaveBeenCalledWith(
-            "cat: testFile.txt: No such file or directory",
+            "cat: testFile2.txt: No such file or directory",
         );
     });
 
     it("should refuse to work on directory", () => {
-        spyOn(fileSystemMock, "exists").and.returnValue(true);
-        spyOn(fileSystemMock, "getFile").and.returnValue(
-            new DirNode("dirName", {}),
-        );
-
         catCommand.execute(["dirName"], terminalSpy);
 
         expect(terminalSpy.printLn).toHaveBeenCalledWith(
@@ -55,11 +46,6 @@ describe("Cat command", () => {
     });
 
     it("should get contents of a file", () => {
-        spyOn(fileSystemMock, "exists").and.returnValue(true);
-        spyOn(fileSystemMock, "getFile").and.returnValue(
-            new TextFileNode("testFile.txt", "foo bar"),
-        );
-
         catCommand.execute(["testFile.txt"], terminalSpy);
 
         expect(terminalSpy.printLn).toHaveBeenCalledWith(

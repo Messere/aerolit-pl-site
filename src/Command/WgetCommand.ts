@@ -17,7 +17,7 @@ export default class WgetCommand implements ICommand {
         terminal.printLn("Note that cross origin request restrictions apply.");
     }
 
-    public execute(args: string[], terminal: ITerminal): Promise<void> {
+    public async execute(args: string[], terminal: ITerminal): Promise<void> {
         const validatedArgs = this.validateArgs(args);
 
         if (!validatedArgs.valid) {
@@ -25,17 +25,20 @@ export default class WgetCommand implements ICommand {
             return;
         }
 
-        return fetch(validatedArgs.url).then((result) => {
-            return result.text();
-        }).then((text) => {
+        try {
+            const result = await fetch(validatedArgs.url);
+            if (result.status !== 200) {
+                throw new Error(result.statusText);
+            }
+            const text = await result.text();
             if (validatedArgs.saveToFile) {
                 this.saveTextFile(validatedArgs.dir, validatedArgs.name, text);
             } else {
                 terminal.printLn(text);
             }
-        }).catch((reason) => {
-            terminal.printLn(reason);
-        });
+        } catch (e) {
+            terminal.printLn(`wget: ${e.message}`);
+        }
     }
 
     private saveTextFile(dir: string, name: string, contents: string): void {
@@ -61,7 +64,7 @@ export default class WgetCommand implements ICommand {
 
             const chunks = file.split(this.fileSystem.directorySeparator);
             const name = chunks.pop();
-            const dir = this.fileSystem.directorySeparator + chunks.join(this.fileSystem.directorySeparator);
+            const dir = chunks.join(this.fileSystem.directorySeparator);
 
             if (!this.fileSystem.exists(dir)) {
                 result.errorMessage = `${file}: invalid path`;

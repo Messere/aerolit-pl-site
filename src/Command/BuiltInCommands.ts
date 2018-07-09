@@ -1,4 +1,5 @@
 import IFileSystem from "../FileSystem/IFileSystem";
+import ILocation from "../Location/ILocation";
 import IUptime from "../Uptime/IUptime";
 import CatCommand from "./CatCommand";
 import CdCommand from "./CdCommand";
@@ -24,6 +25,7 @@ export default class BuiltInCommands implements ICommandCollection {
         fileSystem: IFileSystem,
         uaParser: any,
         uptime: IUptime,
+        location: ILocation,
     ) {
         this.help = new HelpCommand(this);
         this.ls = new LsCommand(fileSystem);
@@ -35,7 +37,7 @@ export default class BuiltInCommands implements ICommandCollection {
         this.rmdir = new RmdirCommand(fileSystem);
         this.clear = new ClearCommand();
         this.uname = new UnameCommand(uaParser);
-        this.ps = new PsCommand(uaParser, uptime);
+        this.ps = new PsCommand(uaParser, uptime, location);
         this.fortune = new FortuneCommand();
         this.whoami = new WhoamiCommand();
         this.wget = new WgetCommand(fileSystem);

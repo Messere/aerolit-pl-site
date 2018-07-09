@@ -1,7 +1,7 @@
 {
     "name": "aerolit.pl",
     "description": "aerolit.pl homepage",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "author": "Dariusz Sieradzki",
     "license": "MIT",
     "repository": {
@@ -35,6 +35,6 @@
         "build": "gulp",
         "lint": "tslint --project .",
         "cleanup": "rm -r dist/*",
-        "test": "jasmine-ts JASMINE_CONFIG_PATH=./jasmine.json"
+        "test": "jasmine-ts --config=./jasmine.json"
     }
 }

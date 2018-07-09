@@ -17,13 +17,14 @@ export default class LsCommand implements ICommand {
     }
 
     public execute(args: string[], terminal: ITerminal): void {
+        const filePath = args[0] || this.fileSystem.getCwd();
 
-        if (!this.fileSystem.exists(args[0] || null)) {
-            terminal.printLn(`ls: cannot access '${args[0]}': No such file or directory`);
+        if (!this.fileSystem.exists(filePath)) {
+            terminal.printLn(`ls: cannot access '${filePath}': No such file or directory`);
             return;
         }
 
-        const file = this.fileSystem.getFile(args[0] || null);
+        const file = this.fileSystem.getFile(filePath);
 
         if (file.isDir) {
             const children = file.getContents() as IFileNodeCollection;
