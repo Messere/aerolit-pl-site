@@ -1,12 +1,12 @@
 import {UAParser} from "ua-parser-js";
-import BuiltInCommands from "../Command/BuiltInCommands";
-import CommandLineParser from "../Command/CommandLineParser";
 import InMemoryFileSystem from "../FileSystem/InMemoryFileSystem";
 import DocumentLocation from "../Location/DocumentLocation";
+import CommandLineParser from "../Parser/CommandLineParser";
 import PromptWithCwd from "../Prompt/PromptWithCwd";
 import SimpleTerminal from "../Terminal/SimpleTerminal";
 import Terminal from "../Terminal/Terminal";
 import Uptime from "../Uptime/Uptime";
+import BuiltInCommands from "./BuiltInCommands";
 import files from "./files";
 
 const fileSystem = new InMemoryFileSystem(files);

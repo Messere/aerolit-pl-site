@@ -1,4 +1,4 @@
-import ICommandLineParser from "../Command/ICommandLineParser";
+import ICommandLineParser from "../Parser/ICommandLineParser";
 import IPrompt from "../Prompt/IPrompt";
 import ICommandHandler from "./ICommandHandler";
 import ITerminal from "./ITerminal";

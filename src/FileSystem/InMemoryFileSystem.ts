@@ -96,6 +96,10 @@ export default class InMemoryFileSystem implements IFileSystem {
     }
 
     private getFileByCanonicalPath(canonicalPath: string[]): IFileNode {
+        if (!this.canonicalPathExists(canonicalPath)) {
+            throw new Error("file does not exist");
+        }
+
         let partialFileSystem = this.directories;
         let lastChunk = null;
         for (
@@ -134,7 +138,7 @@ export default class InMemoryFileSystem implements IFileSystem {
                 return new TextFileNode(name, fileData);
         }
 
-        throw new Error(`Unsupported object ${name} -> ${typeof fileData} in filesystem`);
+        throw new Error(`Unsupported object type '${typeof fileData}' for '${name}' entry in filesystem`);
     }
 
     private getDirectoryChildren(fileSystem: object): IFileNodeCollection {

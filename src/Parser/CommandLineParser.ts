@@ -1,8 +1,8 @@
+import ICommandCollection from "../Command/ICommandCollection";
+import ITerminalCommand from "../Command/ITerminalCommand";
 import IFileSystem from "../FileSystem/IFileSystem";
 import ITerminal from "../Terminal/ITerminal";
-import ICommandCollection from "./ICommandCollection";
 import ICommandLineParser from "./ICommandLineParser";
-import ITerminalCommand from "./ITerminalCommand";
 
 export default class CommandLineParser implements ICommandLineParser {
     private commands: ICommandCollection;

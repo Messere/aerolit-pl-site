@@ -7,7 +7,7 @@ import ITerminal from "../Terminal/ITerminal";
 // -----------------------------------------------------------------------//
 // original artwork by Mr. Asciihead, posted on alt.ascii-art
 
-export default function macarena(
+export default async function macarena(
     args: string[],
     terminal: ITerminal,
     timeToRun: number = 5400,
@@ -73,9 +73,6 @@ export default function macarena(
 
     const interval = setInterval(showFrame, timeOut);
 
-    return Promise.resolve(null).then(() => new Promise(
-        (resolve) => setTimeout(resolve, timeToRun),
-    )).then(() => {
-        clearInterval(interval);
-    });
+    await new Promise((resolve) => setTimeout(resolve, timeToRun));
+    clearInterval(interval);
 }

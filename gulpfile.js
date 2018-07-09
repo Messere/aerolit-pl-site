@@ -9,7 +9,7 @@ const path = require("path");
 const paths = {
     pages: ["src/Web/*.html"],
     destinationDir: "dist",
-    entryPoint: "src/Web/bootstrap.ts"
+    entryPoint: "src/Web/Bootstrap.ts"
 };
 
 gulp.task("copy-html", function () {
