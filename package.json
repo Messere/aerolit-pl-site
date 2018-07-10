@@ -1,7 +1,7 @@
 {
     "name": "aerolit.pl",
     "description": "aerolit.pl homepage",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "author": "Dariusz Sieradzki",
     "license": "MIT",
     "repository": {
@@ -26,6 +26,7 @@
         "jasmine-ts": "^0.2.1",
         "node-fetch": "^2.1.2",
         "npm-watch": "^0.3.0",
+        "testcafe": "^0.20.4",
         "tsify": "^4.0.0",
         "tslint": "^5.10.0",
         "typescript": "^2.9.2",
@@ -34,7 +35,9 @@
     },
     "watch": {
         "test": {
-            "patterns": ["src"],
+            "patterns": [
+                "src"
+            ],
             "extensions": "ts",
             "quiet": true,
             "legacyWatch": true,
@@ -47,6 +50,7 @@
         "cleanup": "rm -r dist/*",
         "test": "jasmine-ts --config=./jasmine.json",
         "watch": "npm-watch test",
-        "start": "gulp && node server.js"
+        "start": "gulp && node server.js",
+        "ui-test": "testcafe chrome:headless tests/*.ts"
     }
 }

@@ -1,5 +1,6 @@
 import macarena from "../Bin/Macarena";
-import asciiArt from "./ascii";
+import ITerminal from "../Terminal/ITerminal";
+import asciiArt from "./Ascii";
 
 /**
  * default contents of filesystem
@@ -30,9 +31,15 @@ const files = {
             pikantnasztuka: openUrl.bind(this, "https://pikantnasztuka.aerolit.pl/"),
         },
     },
+    "test": {
+        "exec-file": (args: string[], terminal: ITerminal) => {
+            terminal.printLn("lorem ipsum");
+        },
+        "text-file": "lorem ipsum",
+    },
     "www": {
         "aerolit.pl": openUrl.bind(this, "https://aerolit.pl/"),
-        "messer": openUrl.bind(this, "http://messer.aerolit.pl/"),
+        "messer": openUrl.bind(this, "https://messer.aerolit.pl/"),
         "montypython": openUrl.bind(this, "https://montypython.aerolit.pl/"),
         "niemen": openUrl.bind(this, "https://niemen.aerolit.pl/forum/"),
         "osjan": openUrl.bind(this, "https://osjan.aerolit.pl/"),

@@ -7,7 +7,7 @@ import SimpleTerminal from "../Terminal/SimpleTerminal";
 import Terminal from "../Terminal/Terminal";
 import Uptime from "../Uptime/Uptime";
 import BuiltInCommands from "./BuiltInCommands";
-import files from "./files";
+import files from "./Files";
 
 const fileSystem = new InMemoryFileSystem(files);
 

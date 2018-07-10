@@ -19,7 +19,7 @@
         }
         .Terminal {
             white-space: pre;
-            font-size: smaller;
+            font-size: small;
         }
         .prompt {
             color: greenyellow;
@@ -32,6 +32,12 @@
         }
         .error {
             color: red;
+        }
+
+        @media(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .Terminal {
+                font-size: xx-large;
+            }
         }
     </style>
 </head>

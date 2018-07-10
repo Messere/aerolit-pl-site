@@ -25,7 +25,7 @@ describe("Cat command", () => {
     it("should require argument", () => {
         catCommand.execute([], terminalSpy);
         expect(terminalSpy.printLn).toHaveBeenCalledWith(
-            "file: missing operand",
+            "cat: missing operand",
         );
     });
 

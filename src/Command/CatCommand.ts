@@ -17,7 +17,7 @@ export default class CatCommand implements ICommand {
         const path = args[0] || null;
 
         if (path === null) {
-            terminal.printLn("file: missing operand");
+            terminal.printLn("cat: missing operand");
         } else if (!this.fileSystem.exists(path)) {
             terminal.printLn(`cat: ${path}: No such file or directory`);
         } else {
