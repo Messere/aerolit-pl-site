@@ -17,7 +17,7 @@ gulp.task("copy-html", function () {
         .pipe(gulp.dest(paths.destinationDir));
 });
 
-gulp.task("default", ["copy-html"], function () {
+gulp.task("default", gulp.series("copy-html", function () {
     return browserify({
         basedir: ".",
         debug: true,
@@ -31,4 +31,4 @@ gulp.task("default", ["copy-html"], function () {
     .pipe(exorcist(path.join(paths.destinationDir, "bundle.js.map")))
     .pipe(source("bundle.js"))
     .pipe(gulp.dest(paths.destinationDir));
-});
+}));
